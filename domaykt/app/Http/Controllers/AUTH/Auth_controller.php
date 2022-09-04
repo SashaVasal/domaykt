@@ -71,4 +71,6 @@ class Auth_controller extends Controller
 
         return redirect(route('profile'));
     }
+
+
 }

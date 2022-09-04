@@ -8,4 +8,5 @@ use Illuminate\Http\Request;
 class Stroy_controller extends Controller
 {
     //
+
 }

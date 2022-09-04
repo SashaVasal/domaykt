@@ -28,8 +28,10 @@
 
             @endguest
             @auth
-                @if($user['role'] == 1)
-                        <li class="nav-item"> <a class="nav-link" href="{{route('profile')}}">Добавить новострой</a></li>
+                @if(auth()->user()->role == 1)
+                        <li class="nav-item"> <a class="nav-link" href="{{route('create_novostroy_user')}}">Добавить новострой</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('create_house')}}">Добавить дом</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('add_flats_forms')}}">Добавить квартиры</a></li>
                 @endif
                     <li class="nav-item"> <a class="nav-link" href="{{route('profile')}}">Профиль</a></li>
 

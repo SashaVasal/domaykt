@@ -19,7 +19,7 @@ class User extends Authenticatable
     {
         $user = new self();
         $user->login = $data['login'];
-        $user->role = 1;
+        $user->role = 0;
         $user->firstname = $data['firstname'];
         $user->lastname = $data['lastname'];
         $user->phone = $data['phone'];
@@ -28,6 +28,25 @@ class User extends Authenticatable
         return $user;
     }
 
+    public static function createNovostroyFromRequest($data) : self
+    {
+        $user = new self();
+        $user->login = $data['login'];
+        $user->role = 2;
+        $user->firstname = $data['firstname'];
+        $user->lastname = $data['lastname'];
+        $user->phone = $data['phone'];
+        $user->password = Hash::make($data['password']);
+        $user->save();
+        return $user;
+    }
+
+    public function check_role($role){
+        if($role == $this->role){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * The attributes that are mass assignable.

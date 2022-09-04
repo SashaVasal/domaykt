@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('house', function (Blueprint $table) {
+        Schema::create('houses', function (Blueprint $table) {
             $table->id();
             $table->string('address');
             $table->double('latitude');
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('entrance');
             $table->boolean('is_floor');
             $table->integer('status_object')->unsigned();
+            $table->timestamps();
         });
     }
 

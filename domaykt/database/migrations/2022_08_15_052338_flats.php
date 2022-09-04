@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('flat', function (Blueprint $table) {
+        Schema::create('flats', function (Blueprint $table) {
             $table->id();
             $table->double('price_for_square');
             $table->double('square');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('image');
             $table->integer('status_flat')->unsigned();
             $table->integer('house_id')->unsigned();
+            $table->timestamps();
         });
     }
 

@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_object', function (Blueprint $table) {
+        Schema::create('status_objects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->timestamps();
         });
     }
 
