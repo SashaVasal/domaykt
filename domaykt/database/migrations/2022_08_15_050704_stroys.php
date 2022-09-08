@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('latitude');
             $table->double('longitude');
             $table->json('places');
-            $table->integer('user_id')->unsigned();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
 
         });
@@ -34,8 +34,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::create('stroys', function (Blueprint $table) {
+        Schema::dropIfExists('stroys');
+       /* Schema::create('stroys', function (Blueprint $table) {
             $table->foreignId('user_id')->references('id')->on('users');
-        });
+        });*/
     }
 };

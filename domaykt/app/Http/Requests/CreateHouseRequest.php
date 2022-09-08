@@ -29,12 +29,12 @@ class CreateHouseRequest extends FormRequest
     {
         return [
             'stroy_id' => ['required'],
-            'image' => ['nullable','mimes:jpeg,jpg,png,gif','max:10000'],
+            'image' => ['nullable','image','mimes:jpeg,jpg,png,gif'],
             'address' => ['nullable','required','string','max:100'],
             'start_date' => ['nullable','date'],
             'end_date' => ['nullable','date','after_or_equal:start_date'],
-            'latitude' => ['nullable','regex:/^[0-9]+(\.[0-9][0-9]?)?$/'],
-            'longitude' => ['required'],
+            'latitude' => ['nullable','regex:/^\d+(\.\d{1,2})?$/'],
+            'longitude' => ['required','regex:/^\d+(\.\d{1,2})?$/'],
             'entrance' => ['nullable','integer'],
             'is_floor' => ['nullable'],
             'floors' => ['nullable', 'integer'],

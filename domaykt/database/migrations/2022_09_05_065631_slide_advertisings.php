@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_flats', function (Blueprint $table) {
+        Schema::create('slide_advertisements', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('house_id')->references('id')->on('houses');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('slide_advertisements');
     }
 };

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="bd-example" style="width: 300pt">
-        <form method="post" action="{{route('create_house.post')}}">
+        <form method="post" enctype="multipart/form-data" action="{{route('create_house.post')}}">
             @csrf
             <div class="mb-3">
                 <label>
@@ -23,8 +23,9 @@
                 <label class="form-label">Status object</label>
                 <label for="status_object"></label>
                 <select name="status_object" id="status_object">
-                    <option value="1">Сделан</option>
-                    <option value="2">Будет сделано</option>
+                    @foreach($objects_status as $object_status)
+                        <option value="{{$object_status->id}}">{{$object_status->name}}</option>
+                    @endforeach
                 </select>
                 @error('status_object')
                 <div class="alert">

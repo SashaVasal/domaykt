@@ -9,6 +9,8 @@ use App\Http\Requests\CreateStroyRequest;
 use App\Imports\Flats_import;
 use App\Models\Flat;
 use App\Models\House;
+use App\Models\Slide_advertisement;
+use App\Models\Status_object;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Stroy;
@@ -65,15 +67,19 @@ class Admin_controller extends Controller
         $this->Check_role();
 
         $stroys = Stroy::all();
-        return view('admin.create_house',['stroys' => $stroys]);
+        $objects_status = Status_object::all();
+        return view('admin.create_house',['stroys' => $stroys, 'objects_status' => $objects_status]);
     }
 
     public function create_house(CreateHouseRequest $request){
         $this->Check_role();
-
         $data = $request->validated();
-        $house = House::createFromRequest($data);
 
+        $data['image']->store('public');
+        $hashname = $data['image']->hashName();;
+        $data['image'] = $hashname;
+
+        $house = House::createFromRequest($data);
         $places = Stroy::query()->find($data['stroy_id'])->places;
 
         $myplaces = json_decode($places, true);
@@ -106,5 +112,21 @@ class Admin_controller extends Controller
         Flat::flats_import($data,$request->house_id);
 
         return $request;
+    }
+
+
+    public function setup_slide_form(Request $request){
+        $this->Check_role();
+
+        $houses = House::all();
+        return view('admin.setup_slide',['houses'=>$houses]);
+    }
+
+    public function setup_slide(Request $request){
+        $this->Check_role();
+        Slide_advertisement::query()->truncate();
+
+        Slide_advertisement::Add_data($request);
+        return redirect('/');
     }
 }

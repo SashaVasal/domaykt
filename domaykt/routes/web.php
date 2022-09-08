@@ -44,6 +44,9 @@ Route::post('/create_house',[Admin_controller::class,'create_house'])->name('cre
 Route::get('/add_flats',[Admin_controller::class,'add_flats_forms'])->name('add_flats_forms');
 Route::post('/add_flats',[Admin_controller::class,'add_flats'])->name('add_flats.post');
 
+Route::get('/setup_slide',[Admin_controller::class,'setup_slide_form'])->name('setup_slide');
+Route::post('/setup_slide',[Admin_controller::class,'setup_slide'])->name('setup_slide.post');
+
 #User functions
 //Route::get('/')
 #Route::get('/')

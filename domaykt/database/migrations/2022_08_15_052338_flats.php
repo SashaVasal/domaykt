@@ -20,8 +20,8 @@ return new class extends Migration
             $table->double('total_price');
             $table->integer('rooms');
             $table->string('image');
-            $table->integer('status_flat')->unsigned();
-            $table->integer('house_id')->unsigned();
+            $table->foreignId('status_flat')->references('id')->on('status_flats');
+            $table->foreignId('house_id')->references('id')->on('houses');
             $table->timestamps();
         });
     }
@@ -33,9 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::create('flat', function (Blueprint $table) {
-            $table->foreignId('status_flat')->references('id')->on('status_flat');
-            $table->foreignId('house_id')->references('id')->on('house');
-        });
+       /* Schema::create('flats', function (Blueprint $table) {
+            $table->foreignId('status_flat')->references('id')->on('status_flats');
+            $table->foreignId('house_id')->references('id')->on('houses');
+        });*/
     }
 };

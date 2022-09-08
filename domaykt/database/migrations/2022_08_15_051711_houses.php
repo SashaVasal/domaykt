@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
+
+
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
+
             $table->string('address');
             $table->double('latitude');
             $table->double('longitude');
@@ -24,9 +27,10 @@ return new class extends Migration
             $table->integer('floors');
             $table->integer('entrance');
             $table->boolean('is_floor');
-            $table->integer('status_object')->unsigned();
+            $table->foreignId('status_object')->references('id')->on('status_objects');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -36,8 +40,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::create('house', function (Blueprint $table) {
+        Schema::dropIfExists('houses');
+       /* Schema::create('house', function (Blueprint $table) {
             $table->foreignId('status_object')->references('id')->on('status_object');
-        });
+        });*/
     }
 };
